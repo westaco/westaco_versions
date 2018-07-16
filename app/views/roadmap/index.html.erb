@@ -1,0 +1,24 @@
+<div class="contextual">
+  <%= link_to(l(:label_version_new), new_project_version_path(@project),
+              :class => 'icon icon-add') if @project && User.current.allowed_to?(:manage_versions, @project) %>
+</div>
+
+<%= title(l(:label_version_plural)) %>
+
+<%= form_tag(@project ? roadmap_project_versions_path(@project) : roadmap_versions_path, :method => :get, :id => 'query_form') do %>
+  <%= render :partial => 'queries/query_form' %>
+<% end %>
+
+<% if @query.valid? %>
+  <% if @versions.present? %>
+    <%= render_query_totals(@query) %>
+    <%= render :partial => 'list', :locals => { :versions => @versions } %>
+    <span class="pagination"><%= pagination_links_full(@version_pages, @version_count) %></span>
+  <% else %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% end %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render_sidebar_queries(VersionQuery, @project) %>
+<% end %>

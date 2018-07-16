@@ -1,0 +1,6 @@
+tr.version.behind-schedule a {
+    color: #b44005;
+}
+tr.version.overdue a {
+    color: #a80a0a;
+}

@@ -1,0 +1,101 @@
+<%= render :file => File.join(Rails.root, 'app/views/versions/_overview.html.erb'), :locals => { :version => version } %>
+
+<div class="westaco-versions-data" style="display: none;">
+  <p class="status-subtitle">
+    <span class="status"><%= l("version_status_#{version.status}").capitalize %>.</span>
+    <% unless version.completed? %>
+      <% if version.effective_date %>
+        <span class="due-date"><strong><%= due_date_distance_in_words(version.effective_date) %></strong> (<%= format_date(version.effective_date) %>).</span>
+      <% end %>
+      <% if version.end_date && (!version.effective_date || version.effective_date != version.end_date) %>
+        <span class="end-date">
+          <%= l((version.end_date < User.current.today ? :label_roadmap_ended_ago : :label_roadmap_ends_in), distance_of_date_in_words(User.current.today, version.end_date)) %>
+          (<%= format_date(version.end_date) %>).
+        </span>
+      <% end %>
+      <% if version.start_date %>
+        <span class="start-date">
+          <em><%= l((version.start_date < User.current.today ? :label_roadmap_started_ago : :label_roadmap_starts_in), distance_of_date_in_words(User.current.today, version.start_date)) %></em>
+          (<%= format_date(version.start_date) %>).
+        </span>
+      <% end %>
+    <% else %>
+      <% if version.effective_date %>
+        <span class="due-date"><%= format_date(version.effective_date) %></span>
+        <% if version.end_date && version.end_date != version.effective_date %>
+          (<% if version.start_date %><span class="start-date"><%= format_date(version.start_date) %></span> -
+           <% end %><span class="end-date"><%= format_date(version.end_date) %></span><% if version.start_date %>:
+           <%= l('datetime.distance_in_words.x_days', :count => version.duration) %><% if (extra_duration = version.extra_duration) && extra_duration != 0 %>,
+           <%= '+' if extra_duration > 0 %><%= l('datetime.distance_in_words.x_days', :count => extra_duration) %><% end %><% end %>)
+        <% end %>
+      <% elsif version.end_date %>
+        <span class="end-date"><%= format_date(version.end_date) %></span>
+      <% end %>
+    <% end %>
+  </p>
+
+  <% estimated_duration = version.estimated_duration %>
+  <% duration = version.duration %>
+  <% remaining_duration = version.remaining_duration %>
+  <% extra_duration = version.extra_duration %>
+  <ul>
+    <li>
+      <span class="label"><%= l(:field_effective_date) %>:</span>
+      <%= version.effective_date ? format_date(version.effective_date) : l(:label_not_available_short) %>
+    </li>
+    <li>
+      <span class="label"><%= l(:field_start_date) %>:</span>
+      <%= version.start_date ? format_date(version.start_date) : l(:label_not_available_short) %>
+    </li>
+    <li>
+      <span class="label"><%= l(:field_end_date) %>:</span>
+      <%= version.end_date ? format_date(version.end_date) : l(:label_not_available_short) %>
+    </li>
+    <li>
+      <span class="label"><%= l(:field_estimated_duration) %>:</span>
+      <%= estimated_duration ? l('datetime.distance_in_words.x_days', :count => estimated_duration) : l(:label_not_available_short) %>
+    </li>
+    <li>
+      <span class="label"><%= l(:field_duration) %>:</span>
+      <%= duration ? l('datetime.distance_in_words.x_days', :count => duration) : l(:label_not_available_short) %>
+    </li>
+    <% unless version.closed? %>
+      <li>
+        <span class="label"><%= l(:field_remaining_duration) %>:</span>
+        <%= remaining_duration ? l('datetime.distance_in_words.x_days', :count => remaining_duration) : l(:label_not_available_short) %>
+      </li>
+    <% end %>
+    <li>
+      <span class="label"><%= l(:field_extra_duration) %>:</span>
+      <% if extra_duration %>
+        <span class="duration <%= 'overdue' if extra_duration > 0 %> <%= 'early' if extra_duration < 0 %>">
+          <%= '+' if extra_duration > 0 %><%= l('datetime.distance_in_words.x_days', :count => extra_duration) %>
+        </span>
+      <% else %>
+        <%= l(:label_not_available_short) %>
+      <% end %>
+    </li>
+    <li class="last"><span class="label"><%= l(:field_created_on) %>:</span> <%= format_time(version.created_on) %></li>
+    <li class="last"><span class="label"><%= l(:field_updated_on) %>:</span> <%= format_time(version.updated_on) %></li>
+    <% if version.closed? %>
+      <li class="last"><span class="label"><%= l(:field_closed_on) %>:</span> <%= format_time(version.closed_on) %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= javascript_tag do %>
+  (function($) {
+    var $versionOverview = $('div.version-overview').last();
+    var $westacoData = $('div.westaco-versions-data');
+    <% if version.completed? || version.effective_date %>
+      $versionOverview.find('p').first().remove();
+    <% end %>
+    $versionOverview.prepend($westacoData.find('p.status-subtitle'));
+    $ul = $versionOverview.children('ul').first();
+    if ($ul.length == 0) {
+      $ul = $('<ul>').insertAfter($versionOverview.children('p').eq(1));
+    }
+    $ul.append($westacoData.find('ul li.last'));
+    $ul.prepend($westacoData.find('ul li'));
+  })(jQuery);
+<% end %>

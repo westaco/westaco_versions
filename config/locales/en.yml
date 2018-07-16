@@ -1,0 +1,14 @@
+en:
+  label_open_issues_count: Open issues
+  label_closed_issues_count: Closed issues
+  label_not_available_short: n/a
+  field_end_date: End date
+  field_duration: Actual duration
+  field_extra_duration: Extra duration
+  field_remaining_duration: Remaining duration
+  field_estimated_duration: Estimated duration
+
+  label_roadmap_started_ago: Started %{value} ago
+  label_roadmap_starts_in: Start in %{value}
+  label_roadmap_ended_ago: Finished %{value} ago
+  label_roadmap_ends_in: Finish in %{value}

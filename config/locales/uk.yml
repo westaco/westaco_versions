@@ -1,0 +1,14 @@
+uk:
+  label_open_issues_count: Відкриті завдання
+  label_closed_issues_count: Закриті завдання
+  label_not_available_short: н.д.
+  field_end_date: Дата завершення
+  field_duration: Фактична тривалість
+  field_extra_duration: Додаткова тривалість
+  field_remaining_duration: Залишилось
+  field_estimated_duration: Орієнтовна тривалість
+
+  label_roadmap_started_ago: Почато %{value} назад
+  label_roadmap_starts_in: Початок через %{value}
+  label_roadmap_ended_ago: Завершено %{value} назад
+  label_roadmap_ends_in: Завершення через %{value}

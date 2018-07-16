@@ -1,0 +1,10 @@
+<%= render :file => File.join(Rails.root, 'app/views/versions/_form.html.erb'), :locals => { :f => f } %>
+
+<div id="westaco_fields_container" style="display: none;">
+  <p><%= f.date_field(:start_date, :size => 10) %><%= calendar_for('version_start_date') %></p>
+  <p><%= f.date_field(:end_date, :size => 10) %><%= calendar_for('version_end_date') %></p>
+</div>
+
+<%= javascript_tag do %>
+  $('#version_effective_date').closest('p').after($('#westaco_fields_container').find('p'));
+<% end %>

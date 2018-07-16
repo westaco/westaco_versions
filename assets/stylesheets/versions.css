@@ -1,0 +1,28 @@
+tr.version td.name {
+    padding-left: 2px;
+}
+tr.version td.wiki_page_title {
+    text-align: left;
+}
+tr.version td.extra_duration .early,
+.version-overview span.duration.early {
+    color: #292;
+}
+tr.version.closed td.extra_duration .early {
+    color: #696;
+}
+tr.version td.extra_duration .overdue,
+.version-overview span.duration.overdue {
+    color: #c22;
+}
+tr.version.closed td.extra_duration .overdue {
+    color: #c66;
+}
+.version-overview > ul {
+    column-count: auto;
+    column-width: 400px;
+    -webkit-column-count: auto;
+    -webkit-column-width: 400px;
+    -moz-column-count: auto;
+    -moz-column-width: 400px;
+}
