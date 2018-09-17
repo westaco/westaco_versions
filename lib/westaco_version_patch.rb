@@ -5,6 +5,9 @@ module WestacoVersionPatch
         base.class_eval do
             unloadable
 
+            acts_as_event :title => :name, :author => nil, :group => :project,
+                          :url => Proc.new { |object| { :controller => 'versions', :action => 'show', :id => object.id } }
+
             validates :start_date, :date => true
             validates :end_date, :date => true
             validate :validate_dates
@@ -12,6 +15,8 @@ module WestacoVersionPatch
             safe_attributes 'start_date', 'end_date'
 
             before_save :update_closed_on
+
+            alias :done_ratio :completed_percent
 
             # This overrides a native method that uses earliest start date of version's issues
             alias_method :start_date, :version_start_date
@@ -41,6 +46,10 @@ module WestacoVersionPatch
 
         def extra_duration
             (effective_date && end_date) ? (end_date - effective_date).to_i : nil
+        end
+
+        def default_version
+            self == project.default_version
         end
 
     private
