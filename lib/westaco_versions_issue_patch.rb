@@ -5,7 +5,11 @@ module WestacoVersionsIssuePatch
         base.class_eval do
             unloadable
 
-            after_save :update_version_start_date, :if => Proc.new { |issue| issue.start_date_changed? || issue.fixed_version_id_changed? }
+            after_save :update_version_start_date, :if => Proc.new { |issue|
+                Rails::VERSION::MAJOR < 5 || (Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR < 1) ?
+                    issue.start_date_changed? || issue.fixed_version_id_changed? :
+                    issue.saved_change_to_start_date? || issue.saved_change_to_fixed_version_id?
+            }
         end
     end
 

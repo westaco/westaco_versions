@@ -22,7 +22,7 @@ Redmine::Plugin.register :westaco_versions do
     author_url 'http://www.andriylesyuk.com/'
     description 'Adds global and per-project version lists'
     url 'https://github.com/westaco/westaco_versions'
-    version '0.0.2'
+    version '0.0.3'
 
     menu :application_menu, :versions, { :controller => 'roadmap', :action => 'index' },
                             :if => Proc.new { User.current.allowed_to?(:view_issues, nil, :global => true) },

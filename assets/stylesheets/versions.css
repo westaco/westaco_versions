@@ -1,3 +1,6 @@
+body.controller-roadmap .query-totals {
+    margin-top: -2.3em;
+}
 tr.version td.name {
     padding-left: 2px;
 }

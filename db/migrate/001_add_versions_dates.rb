@@ -1,4 +1,4 @@
-class AddVersionsDates < ActiveRecord::Migration
+class AddVersionsDates < Rails::VERSION::MAJOR < 5 ? ActiveRecord::Migration : ActiveRecord::Migration[4.2]
 
     def self.up
         add_column :versions, :start_date, :date
