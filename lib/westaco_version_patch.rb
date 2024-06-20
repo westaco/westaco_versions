@@ -71,3 +71,7 @@ module WestacoVersionPatch
     end
 
 end
+
+unless Version.included_modules.include?(WestacoVersionPatch)
+    Version.send(:include, WestacoVersionPatch)
+end

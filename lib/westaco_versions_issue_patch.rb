@@ -25,3 +25,7 @@ module WestacoVersionsIssuePatch
     end
 
 end
+
+unless Issue.included_modules.include?(WestacoVersionsIssuePatch)
+    Issue.send(:include, WestacoVersionsIssuePatch)
+end

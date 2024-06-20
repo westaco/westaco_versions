@@ -1,4 +1,5 @@
-<%= render :file => File.join(Rails.root, 'app/views/versions/_form.html.erb'), :locals => { :f => f } %>
+<% versions_form = render(:file => File.join(Rails.root, 'app/views/versions/_form.html.erb'), :locals => { :f => f }) %>
+<%= render inline: versions_form, locals: { f: f } %>
 
 <div id="westaco_fields_container" style="display: none;">
   <p><%= f.date_field(:start_date, :size => 10) %><%= calendar_for('version_start_date') %></p>

@@ -5,3 +5,7 @@ module WestacoVersionsQueriesControllerPatch
     end
 
 end
+
+unless QueriesController.included_modules.include?(WestacoVersionsQueriesControllerPatch)
+    QueriesController.send(:include, WestacoVersionsQueriesControllerPatch)
+end

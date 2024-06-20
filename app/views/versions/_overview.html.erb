@@ -1,5 +1,5 @@
-<%= render :file => File.join(Rails.root, 'app/views/versions/_overview.html.erb'), :locals => { :version => version } %>
-
+<% overview_file = render(:file => File.join(Rails.root, 'app/views/versions/_overview.html.erb'), :locals => { :version => version }) %>
+<%= render inline: overview_file, locals: { version: version } %>
 <div class="westaco-versions-data" style="display: none;">
   <p class="status-subtitle">
     <span class="status"><%= l("version_status_#{version.status}").capitalize %>.</span>
