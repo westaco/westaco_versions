@@ -12,3 +12,13 @@ uk:
   label_roadmap_starts_in: Початок через %{value}
   label_roadmap_ended_ago: Завершено %{value} назад
   label_roadmap_ends_in: Завершення через %{value}
+
+  label_version_status: Version status
+  label_version_status_plural: Version statuses
+  label_version_status_new: New status
+  label_version_status_timeline: Status timeline
+  label_version_status_timetotal: Total time
+
+  version_status_in_progress: In progress
+
+  error_unable_delete_version_status: 'Unable to delete version status (%{value})'

@@ -29,3 +29,15 @@ tr.version.closed td.extra_duration .overdue {
     -moz-column-count: auto;
     -moz-column-width: 400px;
 }
+.icon-version-open {
+    background-image: url(../images/package.png);
+}
+.icon-version-closed {
+    background-image: url(../images/package.png);
+}
+.icon-version-locked {
+    background-image: url(../images/history.png);
+}
+.version-statuses {
+    background-image: url(../images/lightning.png);
+}

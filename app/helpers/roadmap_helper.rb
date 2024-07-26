@@ -24,7 +24,7 @@ module RoadmapHelper
         when :name
             link_to(value, version_path(item))
         when :status
-            l("version_status_#{value}").capitalize
+            item.status_name.capitalize
         when :sharing
             l("label_version_sharing_#{value}")
         when :wiki_page_title
