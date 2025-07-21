@@ -3,7 +3,7 @@ module WestacoVersionsIssuePatch
     def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-            unloadable
+#            unloadable
 
             after_save :update_version_start_date, :if => Proc.new { |issue|
                 Rails::VERSION::MAJOR < 5 || (Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR < 1) ?

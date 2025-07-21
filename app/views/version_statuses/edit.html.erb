@@ -1,0 +1,6 @@
+<%= title [l(:label_version_status_plural), version_statuses_path], @version_status.name %>
+
+<%= labelled_form_for @version_status do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= submit_tag l(:button_save) %>
+<% end %>

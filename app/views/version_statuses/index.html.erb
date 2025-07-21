@@ -1,0 +1,37 @@
+<div class="contextual">
+  <%= link_to l(:label_version_status_new), new_version_status_path, :class => 'icon icon-add' %>
+</div>
+
+<h2><%=l(:label_version_status_plural)%></h2>
+
+<table class="list version_statuses">
+  <thead>
+    <tr>
+      <th><%= l(:field_name) %></th>
+      <th><%= l(:field_is_closed) %></th>
+      <th><%= l(:field_is_default) %></th>
+      <th><%= l(:field_description) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% for status in @version_statuses %>
+    <tr>
+      <td class="name"><%= link_to status.name, edit_version_status_path(status) %></td>
+      <td><%= checked_image status.is_closed? %></td>
+      <td><%= checked_image status.key == 'open' %></td>
+      <td class="description"><%= status.description %></td>
+      <td class="buttons">
+        <%= reorder_handle(status) %>
+        <%= delete_link version_status_path(status) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= javascript_tag do %>
+  $(function() { $("table.version_statuses tbody").positionedItems(); });
+<% end %>
+
+<% html_title(l(:label_version_status_plural)) -%>

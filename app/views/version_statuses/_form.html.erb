@@ -1,0 +1,14 @@
+<%= error_messages_for 'version_status' %>
+
+<div class="box tabular">
+  <p>
+    <%= f.text_field :name, :required => true %>
+  </p>
+  <p>
+    <%= f.text_area :description, :rows => 4 %>
+  </p>
+  <p>
+    <%= f.check_box :is_closed %>
+  </p>
+  <%= call_hook(:view_version_statuses_form, :version_status => @version_status) %>
+</div>
