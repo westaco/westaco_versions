@@ -1,4 +1,4 @@
-class PopulateVersionsDates < Rails::VERSION::MAJOR < 5 ? ActiveRecord::Migration : ActiveRecord::Migration[4.2]
+class PopulateVersionsDates < Rails::VERSION::MAJOR < 5 ? ActiveRecord::Migration : ActiveRecord::Migration[6.1]
 
     def self.up
         Version.where(:closed_on => nil, :status => 'closed')
