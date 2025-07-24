@@ -3,7 +3,6 @@ module WestacoVersionPatch
     def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-            unloadable
 
             belongs_to :version_status, :foreign_key => :status, :primary_key => :key
             has_many :version_changes, :dependent => :delete_all
