@@ -2,7 +2,7 @@
 <%= render inline: overview_file, locals: { version: version } %>
 <% version_changes_status = version.version_changes.status %>
 <% version_status_changes_timeline = version.version_status_changes_timeline %>
-<% version_status_changes_timeline << (Time.now - (version.last_version_status_change_in_time))/3600 %>
+<% version_status_changes_timeline << (Time.zone.now - (version.last_version_status_change_in_time))/3600 %>
 
 <div class="westaco-version-changes">
   <span><%= l(:field_status) %></span>
