@@ -3,7 +3,6 @@ require 'redmine'
 require File.dirname(__FILE__) + '/lib/westaco_versions_hook.rb'
 require File.dirname(__FILE__) + '/lib/westaco_versions_issue_patch.rb'
 require File.dirname(__FILE__) + '/lib/westaco_versions_queries_controller_patch.rb'
-require File.dirname(__FILE__) + '/lib/westaco_versions_controller_patch.rb'
 require File.dirname(__FILE__) + '/lib/westaco_version_patch.rb'
 
 Rails.logger.info 'Starting Westaco Versions Plugin for Redmine'
