@@ -16,7 +16,7 @@
               <span class="name"><%= version_column_label(@query.group_by_column.name, group_name) %></span>
               <% if group_count %><span class="badge badge-count count"><%= group_count %></span><% end %>
               <span class="totals"><%= group_totals %></span>
-              <%= link_to_function("#{l(:button_collapse_all)}/#{l(:button_expand_all)}", 'toggleAllRowGroups(this)', :class => 'toggle-all') %>
+              <%= link_to("#{l(:button_collapse_all)}/#{l(:button_expand_all)}", '#', :class => 'toggle-all', :onclick => 'toggleAllRowGroups(this); return false;') %>
             </td>
           </tr>
         <% end %>
