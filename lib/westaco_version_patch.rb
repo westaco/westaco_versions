@@ -34,7 +34,7 @@ module WestacoVersionPatch
             before_save :update_closed_on
             after_save :create_version_change
             after_create do |version|
-                time_now = Time.now
+                time_now = Time.zone.now
 
                 version.version_changes.create(
                     :project => version.project,
@@ -135,7 +135,7 @@ module WestacoVersionPatch
             end
 
             if closed?
-                self.closed_on = Time.now if new_record? || status_changed?
+                self.closed_on = Time.zone.now if new_record? || status_changed?
             else
                 self.closed_on = nil if closed_on
             end
@@ -143,7 +143,7 @@ module WestacoVersionPatch
 
         def create_version_change
             if self.status_has_been_changed
-                time_now = Time.now
+                time_now = Time.zone.now
 
                 self.version_changes.create(
                     :project => project,
