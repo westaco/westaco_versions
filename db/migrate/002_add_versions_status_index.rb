@@ -1,4 +1,4 @@
-class AddVersionsStatusIndex < Rails::VERSION::MAJOR < 5 ? ActiveRecord::Migration : ActiveRecord::Migration[4.2]
+class AddVersionsStatusIndex < Rails::VERSION::MAJOR < 5 ? ActiveRecord::Migration : ActiveRecord::Migration[6.1]
 
     def self.up
         add_index :versions, :status
